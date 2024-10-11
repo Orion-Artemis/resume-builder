@@ -7,6 +7,7 @@ import { Outlet } from 'react-router-dom'
 import { useUser } from '@clerk/clerk-react'
 import { Navigate} from 'react-router-dom'
 import Header from './components/custom/Header'
+import { Toaster } from 'sonner'
 
 
 function App() {
@@ -22,6 +23,7 @@ function App() {
     <>
       <Header/>
       <Outlet/>
+      <Toaster/>
     </>
   )
 }
