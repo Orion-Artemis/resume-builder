@@ -3,6 +3,9 @@ import PersonalDetail from './form/PersonalDetail'
 import { Button } from '@/components/ui/button'
 import { ArrowLeft, ArrowRight, LayoutGrid } from 'lucide-react'
 import Summary from './form/Summary'
+import Experience from './form/Experience'
+import Education from './form/Education'
+import Skills from './form/Skills'
 
 const FormSection = () => {
     const [activeformIndex, setActiveformIndex] = useState(1)
@@ -20,10 +23,13 @@ const FormSection = () => {
         {/* Personal Details */}
         {activeformIndex===1?<PersonalDetail enabledNext={(v) => setEnabledNext(v)}/>:null}
         {/* Summary */}
-        {activeformIndex === 2? <Summary enabledNext={(v) => setEnabledNext(v)}/> : null}
+        {activeformIndex===2? <Summary enabledNext={(v) => setEnabledNext(v)}/> : null}
         {/* Experience  */}
+        {activeformIndex==3? <Experience enabledNext={(v) => setEnabledNext(v)}/> : null}
         {/* Educational Details  */}
+        {activeformIndex==4? <Education enabledNext={(v) => setEnabledNext(v)}/> : null}
         {/* Skills  */}
+        {activeformIndex==5? <Skills enabledNext={(v) => setEnabledNext(v)}/> : null}
     </div>
   )
 }

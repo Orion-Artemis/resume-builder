@@ -10,7 +10,7 @@ const SkillsPreview = ({resumeInfo}) => {
             borderColor:resumeInfo?.themeColor
         }}/>
         <div className='grid grid-cols-2 gap-3 my-4'>
-            {resumeInfo?.skills.map((skills, index) => (
+            {resumeInfo?.skills?.map((skills, index) => (
                 <div key={index} className='flex items-center justify-between'>
                     <h2 className='text-xs'>
                         {skills?.name}
@@ -18,7 +18,7 @@ const SkillsPreview = ({resumeInfo}) => {
                     <div className='h-2 bg-gray-200 w-[120px]'>
                         <div className={`h-2`} style={{
                             backgroundColor:resumeInfo?.themeColor,
-                            width: skills?.rating + '%'
+                            width: skills?.rating*20 + '%'
                         }}></div>
                     </div>
                 </div>
