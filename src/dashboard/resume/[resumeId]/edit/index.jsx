@@ -7,15 +7,16 @@ import { resumeInfoContext } from '@/context/ResumeInfoContext'
 import GlobalAPI from './../../../../../service/GlobalAPI'
 
 const EditResume = () => {
-    const {resumeID} = useParams()
+    const {resumeId} = useParams()
     const [resumeInfo, setResumeInfo ] = useState();
     useEffect(() => {
+        // setResumeInfo(Dummy);
         GetResumeInfo();
     },[])
 
 
     const GetResumeInfo=()=>{
-        GlobalAPI.GetResumeById(resumeID).then(resp=>{
+        GlobalAPI.GetResumeById(resumeId).then(resp=>{
             console.log(resp.data.data)
             setResumeInfo(resp.data.data)
         })

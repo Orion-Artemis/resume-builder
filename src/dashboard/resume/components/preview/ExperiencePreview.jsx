@@ -10,14 +10,14 @@ const ExperiencePreview = ({resumeInfo}) => {
             borderColor:resumeInfo?.themeColor
         }}/>
 
-        {resumeInfo?.Experience?.map((experience, index) => (
+        {resumeInfo?.Experience?.map((Experience, index) => (
             <div key={index} className='my-5'>
-                <h2 className={`text-sm font-bold text-[${resumeInfo?.themeColor}]`}>{experience?.title}</h2>
-                <h2 className={`text-xs flex justify-between`}>{experience?.companyName}, {experience?.city}, {experience?.state}
-                <span>{experience?.startDate} to {experience?.currentlyWorking? 'Present':experience?.endDate}</span>
+                <h2 className={`text-sm font-bold text-[${resumeInfo?.themeColor}]`}>{Experience?.title}</h2>
+                <h2 className={`text-xs flex justify-between`}>{Experience?.companyName}, {Experience?.city}, {Experience?.state}
+                <span>{Experience?.startDate} to {Experience?.currentlyWorking? 'Present':Experience?.endDate}</span>
                 </h2>
                 {/* <p className='text-xs my-2'>{experience?.workSummary}</p> */}
-                <div dangerouslySetInnerHTML={{__html:experience?.workSummary}}/>
+                <div dangerouslySetInnerHTML={{__html:Experience?.workSummary}}/>
             </div>
         ))}
 

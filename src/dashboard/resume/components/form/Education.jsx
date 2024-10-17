@@ -47,10 +47,10 @@ function Education() {
         setLoading(true)
         const data={
             data:{
-                Education:educationalList
+                Education:educationalList.map(({ id, ...rest }) => rest)
             }
         }
-
+        console.log(data)
         GlobalAPI.updateResumeDetail(params?.resumeId,data).then(resp=>{
             console.log(resp);
             setLoading(false)
@@ -64,7 +64,7 @@ function Education() {
     useEffect(()=>{
         setResumeInfo({
           ...resumeInfo,
-          education:educationalList
+          Education:educationalList
         })
       },[educationalList])
 

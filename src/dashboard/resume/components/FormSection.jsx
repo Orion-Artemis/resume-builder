@@ -1,19 +1,27 @@
 import React, { useState } from 'react'
 import PersonalDetail from './form/PersonalDetail'
 import { Button } from '@/components/ui/button'
-import { ArrowLeft, ArrowRight, LayoutGrid } from 'lucide-react'
+import { ArrowLeft, ArrowRight, Home, LayoutGrid } from 'lucide-react'
 import Summary from './form/Summary'
 import Experience from './form/Experience'
 import Education from './form/Education'
 import Skills from './form/Skills'
+import { Link, Navigate, useParams } from 'react-router-dom'
+import ThemeColor from './ThemeColor'
 
 const FormSection = () => {
+    const {resumeId}=useParams();
     const [activeformIndex, setActiveformIndex] = useState(1)
     const [enabledNext, setEnabledNext] = useState(false)
   return (
     <div>
         <div className='flex justify-between items-center'>
-            <Button variant='outline' size='sm' className='flex gap-2'><LayoutGrid/> Theme</Button>
+          <div className='flex-gap-5'>
+            <Link to={"/dashboard"}>
+            <Button><Home/></Button>
+            </Link>
+            <ThemeColor/>
+            </div>
             <div className='flex gap-2'>
                 {activeformIndex>1&&<Button size='sm' onClick={() => setActiveformIndex(activeformIndex-1)}><ArrowLeft /></Button>}
                 <Button className='flex gap-2' size='sm' disabled={!enabledNext} onClick={() => setActiveformIndex(activeformIndex+1)}> Next <ArrowRight/> </Button>
@@ -30,6 +38,7 @@ const FormSection = () => {
         {activeformIndex==4? <Education enabledNext={(v) => setEnabledNext(v)}/> : null}
         {/* Skills  */}
         {activeformIndex==5? <Skills enabledNext={(v) => setEnabledNext(v)}/> : null}
+        {activeformIndex==6? <Navigate to={'/my-resume/'+resumeId+'/view'}/> : null}
     </div>
   )
 }

@@ -10,7 +10,7 @@ import { toast } from 'sonner'
 
 const formField={
     title:'',
-    companyname:'',
+    companyName:'',
     city:'',
     state:'',
     startDate:'',
@@ -38,7 +38,7 @@ function Experience() {
     const AddNewExperience=()=>{
         setExperienceList([...experienceList,{
             title:'',
-            companyname:'',
+            companyName:'',
             city:'',
             state:'',
             startDate:'',
@@ -61,10 +61,10 @@ function Experience() {
         setLoading(true)
         const data={
             data:{
-                Experience:experienceList
+                Experience:experienceList.map(({ id, ...rest }) => rest)
             }
         }
-
+        console.log(data)
         GlobalAPI.updateResumeDetail(params?.resumeId,data).then(resp=>{
             console.log(resp);
             setLoading(false)
@@ -78,7 +78,7 @@ function Experience() {
     useEffect(()=>{
         setResumeInfo({
             ...resumeInfo,
-            experience:experienceList
+            Experience:experienceList
         })
     },[experienceList])
 
@@ -90,7 +90,7 @@ function Experience() {
 
         <div>
             {experienceList.map((item,index)=>(
-                <div>
+                <div key={index}>
                     <div className='grid grid-cols-2 gap-3 border p-3 my-5 rounded-lg'>
                         <div>
                             <label className='text-xs'>Position Title</label>
@@ -99,7 +99,7 @@ function Experience() {
 
                         <div>
                             <label className='text-xs'>Company Name</label>
-                            <Input name='companyname' onChange={(event)=>handleChange(index,event)}/>
+                            <Input name='companyName' onChange={(event)=>handleChange(index,event)}/>
                         </div>
 
                         <div>
@@ -136,7 +136,7 @@ function Experience() {
             <Button variant='outline' onClick={AddNewExperience} className='text-primary'> + Add more experience </Button>
             <Button variant='outline' onClick={RemoveExperience} className='text-primary'> - Remove </Button>
             </div>
-            <Button disabled={loading} onClick={()=>onSave()}>
+            <Button disabled={loading} onClick={onSave}>
                 {loading?<LoaderCircle className='animate-spin'/>:'Save'}
             </Button>
         </div>

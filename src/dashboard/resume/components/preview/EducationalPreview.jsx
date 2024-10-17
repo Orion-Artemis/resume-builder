@@ -19,9 +19,6 @@ const EducationalPreview = ({resumeInfo}) => {
                     {education?.degree} in {education?.major}
                     <span>{education?.startDate} - {education?.endDate}</span>
                 </h2>
-                <p className='text-xs my-2'>
-                    {education?.description}
-                </p>
             </div>
         ))}
     </div>
