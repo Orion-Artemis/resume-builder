@@ -4,13 +4,10 @@ import { Button } from '@/components/ui/button'
 import { ArrowLeft, ArrowRight, Home, LayoutGrid } from 'lucide-react'
 import Summary from './form/Summary'
 import Experience from './form/Experience'
-<<<<<<< HEAD
-=======
 import Education from './form/Education'
 import Skills from './form/Skills'
 import { Link, Navigate, useParams } from 'react-router-dom'
 import ThemeColor from './ThemeColor'
->>>>>>> 5bf110b704d8e8cecf61080f65031f5acc955db7
 
 const FormSection = () => {
     const {resumeId}=useParams();
@@ -36,11 +33,7 @@ const FormSection = () => {
         {/* Summary */}
         {activeformIndex===2? <Summary enabledNext={(v) => setEnabledNext(v)}/> : null}
         {/* Experience  */}
-<<<<<<< HEAD
-        {activeformIndex === 3? <Experience enabledNext={(v) => setEnabledNext(v)}/> : null}
-=======
         {activeformIndex==3? <Experience enabledNext={(v) => setEnabledNext(v)}/> : null}
->>>>>>> 5bf110b704d8e8cecf61080f65031f5acc955db7
         {/* Educational Details  */}
         {activeformIndex==4? <Education enabledNext={(v) => setEnabledNext(v)}/> : null}
         {/* Skills  */}
