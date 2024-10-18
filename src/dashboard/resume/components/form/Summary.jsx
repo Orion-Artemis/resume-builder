@@ -44,7 +44,10 @@ const Summary = ({enabledNext}) => {
                 <div className='flex justify-start'>
                     <label>Add Summary</label>
                 </div>
-                    <Textarea required defaultValue={resumeInfo?.summary} onChange={(e) => setSummary(e.target.value)}className='mt-5' />
+                    <Textarea required defaultValue={resumeInfo?.summary} onChange={(e) => {
+                        setSummary(e.target.value)
+                        enabledNext(false)
+                    }}className='mt-5' />
                 <div className='mt-2 flex justify-end'>
                 <Button type='submit' disabled={loading}> {loading?<LoaderCircle className='animate-spin' />:'Save'}</Button>
                 </div>
