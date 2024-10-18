@@ -7,7 +7,6 @@ function Home() {
     <div>
         <Header/>
         Landing Screen
-        <UserButton/>
     </div>
   )
 }

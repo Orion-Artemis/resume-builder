@@ -1,6 +1,50 @@
 @tailwind base;
 @tailwind components;
 @tailwind utilities;
+
+.rsw-ce ul {
+  list-style: disc;
+  padding-left: 2em;
+}
+
+.rsw-ce ol {
+  list-style: decimal;
+  padding-left: 2em;
+}
+
+@media print{
+  #no-print{
+    display: none;
+  }
+
+  #print-area{
+    display: block;
+  }
+
+  body{
+    margin: 0;
+    padding: 0;
+    box-shadow: none;
+  }
+}
+
+@page{
+  size: auto;
+  margin: 0mm;
+}
+
+
+.star {
+  cursor: pointer;
+  font-size: 2rem; /* Adjust size as needed */
+  color: gray; /* Default color for unselected stars */
+}
+
+.star.selected {
+  color: yellow; /* Color for selected stars */
+}
+
+
 @layer base {
   :root {
     --background: 0 0% 100%;
