@@ -7,10 +7,12 @@ import { LoaderCircle } from 'lucide-react'
 import { useParams } from 'react-router-dom';
 import GlobalAPI from './../../../../../service/GlobalAPI'
 import { toast } from 'sonner'
+import { Rating } from '@smastrom/react-rating'
+import '@smastrom/react-rating/style.css'
 
 function Skills() {
-    const params=useParams();
-    const {resumeInfo,setResumeInfo}=useContext(resumeInfoContext);
+    const params = useParams();
+    const { resumeInfo, setResumeInfo } = useContext(resumeInfoContext);
     const [loading, setLoading] = useState(false);
     const [skillsList, setSkillsList] = useState([
         {
@@ -19,50 +21,55 @@ function Skills() {
         },
     ]);
 
-    const AddNewSkill=()=>{
-        setSkillsList([...skillsList,{
+    useEffect(() => {
+        resumeInfo?.skills.length > 0 && setSkillsList(resumeInfo?.skills)
+
+    }, [])
+
+    const AddNewSkill = () => {
+        setSkillsList([...skillsList, {
             name: '',
             rating: 0
         }])
     }
 
-    const RemoveSkill=()=>{
-        setSkillsList(skillsList=>skillsList.slice(0, -1))
+    const RemoveSkill = () => {
+        setSkillsList(skillsList => skillsList.slice(0, -1))
     }
 
     const onSave = () => {
         setLoading(true)
-        const data={
-            data:{
-                skills:skillsList
+        const data = {
+            data: {
+                skills: skillsList.map(({ id, ...rest }) => rest)
             }
         }
 
-        GlobalAPI.updateResumeDetail(params?.resumeId,data).then(resp=>{
+        GlobalAPI.updateResumeDetail(params?.resumeId, data).then(resp => {
             console.log(resp);
             setLoading(false)
             toast('Details updated successfully!')
-          },(error)=>{
+        }, (error) => {
             setLoading(false);
             toast('Server Error, Please try again!')
-          })
+        })
     }
 
-    useEffect(()=>{
+    useEffect(() => {
         setResumeInfo({
             ...resumeInfo,
-            skills:skillsList
+            skills: skillsList
         })
-    },[skillsList])
+    }, [skillsList])
 
     const handleChange = (index, name, value) => {
-        const updatedSkills = [...skillsList]; 
+        const updatedSkills = [...skillsList];
         if (name === 'rating') {
-            updatedSkills[index].rating = value; 
+            updatedSkills[index].rating = value;
         } else {
-            updatedSkills[index][name] = value; 
+            updatedSkills[index][name] = value;
         }
-        setSkillsList(updatedSkills); 
+        setSkillsList(updatedSkills);
     };
 
     return (
@@ -72,31 +79,18 @@ function Skills() {
 
             <div>
                 {skillsList.map((item, index) => (
-                    <div key={index} className="flex justify-between mb-2 border rounded-lg p-3">
-                        <div className="w-3/4">
+                    <div className='flex justify-between mb-2 border rounded-lg p-3'>
+                        <div>
                             <label className="text-xs">Name</label>
                             <Input
                                 className="w-full"
-                                defaultValue={item.name}
                                 onChange={(e) => handleChange(index, 'name', e.target.value)}
+                                defaultValue={item?.name}
                             />
                         </div>
 
-                        <div className="flex items-center w-1/4 justify-end">
-                            <div className="flex space-x-1">
-                                {Array(5)
-                                    .fill(0)
-                                    .map((_, starIndex) => (
-                                        <span
-                                            key={starIndex}
-                                            className={`cursor-pointer text-2xl ${item.rating > starIndex ? 'text-yellow-400' : 'text-gray-300'}`}
-                                            onClick={() => handleChange(index, 'rating', starIndex + 1)}
-                                        >
-                                            ★
-                                        </span>
-                                    ))}
-                            </div>
-                        </div>
+                        <Rating style={{ maxWidth: 120 }} value={item.rating} 
+                        onChange={(v)=> handleChange(index, 'rating', v)} />
                     </div>
                 ))}
             </div>
@@ -105,7 +99,7 @@ function Skills() {
                     <Button variant='outline' onClick={AddNewSkill} className='text-primary'> + Add more skills</Button>
                     <Button variant='outline' onClick={RemoveSkill} className='text-primary'> - Remove </Button>
                 </div>
-                <Button disabled={loading} onClick={()=>onSave()}>
+                <Button disabled={loading} onClick={() => onSave()}>
                     {loading ? <LoaderCircle className='animate-spin' /> : 'Save'}
                 </Button>
             </div>

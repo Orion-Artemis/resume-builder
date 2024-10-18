@@ -22,6 +22,12 @@ function Education() {
         }
     ])
 
+    useEffect(()=>{
+        resumeInfo?.Education.length>0&&setEducationalList(resumeInfo?.Education)
+        
+    },[])
+
+
     const handleChange = (index, event) => {
         const newEntries=educationalList.slice();
         const {name,value}=event.target;
@@ -79,27 +85,32 @@ function Education() {
                         <div className='grid grid-cols-2 gap-3 border p-3 my-5 rounded-lg'>
                             <div className='col-span-2'>
                                 <label>University Name</label>
-                                <Input name='universityName' onChange={(e) => handleChange(index, e)} />
+                                <Input name='universityName' onChange={(e) => handleChange(index, e)}
+                                defaultValue={item?.universityName} />
                             </div>
 
                             <div>
                                 <label>Degree</label>
-                                <Input name='degree' onChange={(e) => handleChange(index, e)} />
+                                <Input name='degree' onChange={(e) => handleChange(index, e)}
+                                defaultValue={item?.degree} />
                             </div>
 
                             <div>
                                 <label>Major</label>
-                                <Input name='major' onChange={(e) => handleChange(index, e)} />
+                                <Input name='major' onChange={(e) => handleChange(index, e)}
+                                defaultValue={item?.major} />
                             </div>
 
                             <div>
                                 <label>Start Date</label>
-                                <Input type='date' name='startDate' onChange={(e) => handleChange(index, e)} />
+                                <Input type='date' name='startDate' onChange={(e) => handleChange(index, e)}
+                                defaultValue={item?.startDate} />
                             </div>
 
                             <div>
                                 <label>End Date</label>
-                                <Input type='date' name='endDate' onChange={(e) => handleChange(index, e)} />
+                                <Input type='date' name='endDate' onChange={(e) => handleChange(index, e)}
+                                defaultValue={item?.endDate} />
                             </div>
                         </div>
                     </div>

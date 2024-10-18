@@ -25,8 +25,8 @@ function ThemeColor() {
     const onColorSelect=(color)=>{
         setSelectedColor(color)
         setResumeInfo({
-            ...resumeInfo,
-            themeColor:color
+          ...resumeInfo,
+          themeColor:color
         });
         const data={
             data:{
@@ -35,7 +35,7 @@ function ThemeColor() {
         }
         GlobalAPI.updateResumeDetail(resumeId,data).then(resp=>{
             console.log(resp);
-            toast('Theme Color Updated')
+            toast('Color Theme Updated!')
         })
     }
 

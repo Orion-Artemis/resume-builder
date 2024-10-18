@@ -2,8 +2,8 @@ import React, { useState } from 'react'
 import {BtnBold, BtnItalic, BtnUnderline, BtnStrikeThrough, Separator, BtnNumberedList,
         BtnBulletList, BtnLink, Editor, EditorProvider, Toolbar} from 'react-simple-wysiwyg'
 
-function RichTexteditor({onRichTextEditorChange}) {
-    const [value,setValue]=useState();
+function RichTexteditor({onRichTextEditorChange, defaultValue}) {
+    const [value,setValue]=useState(defaultValue);
   return (
     <div>
     <EditorProvider>
