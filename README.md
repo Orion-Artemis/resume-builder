@@ -6,11 +6,17 @@ This project is a Resume Builder application built using modern web technologies
 
 The Resume Builder application allows users to create, edit, and share professional resumes. It offers a user-friendly interface and various customizable templates to suit different needs.
 
+---
+
 ## Tech Stack
 
-- **JavaScript**: The main programming language used for the application logic.
-- **CSS**: Styling the application.
-- **HTML**: Structuring the application.
+- **JavaScript (ES6+)**: Primary language for building application logic, leveraging modern syntax and features for clean, efficient code.
+- **React**: JavaScript library for creating dynamic, component-based user interfaces, with hooks for managing state and lifecycle.
+- **Vite**: Fast, modern build tool for optimized development and bundling, enhancing performance and developer experience.
+- **CSS / Tailwind CSS**: Styling the application with flexible, responsive design systems and utility-first classes for rapid UI development.
+- **HTML5**: Structuring the web components and ensuring semantic, accessible content delivery.
+
+---
 
 ## Libraries
 
@@ -36,9 +42,6 @@ To start development, use the following scripts:
 
 ```bash
 npm run dev
-npm run build
-npm run lint
-npm run preview
 ```
 
 ## Installation
